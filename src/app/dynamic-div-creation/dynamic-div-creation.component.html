@@ -1,0 +1,12 @@
+<div class="card content">
+  <div class="card-header text-center">Dynamic DIV Creation</div>
+  <div class="card-body scroll-content" (scroll)="handleScroll($event)">
+    <div *ngFor="let item of divCreationList" class="div-content">
+      <div>
+        <button class="btn btn-primary" (click)="showAlert(item.id)">
+          Click Div - {{item.id}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

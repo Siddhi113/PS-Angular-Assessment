@@ -1,0 +1,62 @@
+<div class="content">
+  <div class="card mb-3">
+    <div class="card-header">
+      <div class="card-title mb-0">
+        <span class="web-title">E-commerce website</span>
+        <div class="pull-right">
+          <button
+            (click)="gridView()"
+            [ngClass]="isGridView ? 'btn-success' : 'btn-primary'"
+            class="btn grid-btn"
+          >
+            <em class="fa fa-th-large"></em> Grid
+          </button>
+          <button
+            (click)="listView()"
+            [ngClass]="isListView ? 'btn-success' : 'btn-primary'"
+            class="btn"
+          >
+            <em class="fa fa-bars"></em> List
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-1">
+    <div class="col-4">
+      <mat-form-field appearance="fill">
+        <mat-label>Apply Filter By Price</mat-label>
+        <mat-select
+          name="priceFilter"
+          #priceFilter="ngModel"
+          [(ngModel)]="selectedPrice"
+          (ngModelChange)="handlePriceFilter()"
+        >
+          <mat-option *ngFor="let price of priceList" [value]="price">{{ price }}</mat-option>
+          <mat-option [value]=undefined>Reset</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <mat-grid-list cols="4" rowHeight="3:2" *ngIf="isGridView">
+    <mat-grid-tile *ngFor="let item of listOfItems; let i = index">
+      <div class="container">
+        <section class="body">
+          <div class="row justify-content-center">Product name: {{item?.itemName}} - {{item?.id}}</div>
+          <div class="row justify-content-center">Price: INR {{item?.price}}</div>
+        </section>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="2" rowHeight="5:2" *ngIf="isListView">
+    <mat-grid-tile *ngFor="let item of listOfItems; let i = index">
+      <div class="container">
+        <section class="body">
+          <div class="row justify-content-center">Product name: {{item?.itemName}} - {{item?.id}}</div>
+          <div class="row justify-content-center">Price: INR {{item?.price}}</div>
+        </section>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

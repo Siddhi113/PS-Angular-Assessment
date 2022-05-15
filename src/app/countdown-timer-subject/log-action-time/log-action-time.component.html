@@ -1,0 +1,13 @@
+<div class="card mt-2">
+  <div class="card-body">
+    <h3>Action Time Log</h3>
+    <div class="row mt-3">
+      <div class="col-12" *ngFor="let item of startedTime">
+        Started/Restarted at {{ item | date: "medium" }}
+      </div>
+      <div class="col-12 mt-3" *ngFor="let item of pausedTime">
+        Paused at {{ item | date: "medium" }}
+      </div>
+    </div>
+  </div>
+</div>

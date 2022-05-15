@@ -1,0 +1,34 @@
+<div class="content">
+  <div class="card mb-3">
+    <div class="card-header text-center">Student - Marks Table</div>
+    <div class="card-body">
+      <table class="table table-responsive table-striped">
+        <thead>
+          <tr>
+            <th
+              *ngFor="let header of keys; let i = index"
+              (click)="sortData(header, i)"
+            >
+              {{ header | uppercase
+              }}<em
+                [ngClass]="iconClass[i] ? iconClass[i] : 'fa fa-sort'"
+                class="sort-space"
+              ></em>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of studentList">
+            <td>{{ data?.id }}</td>
+            <td>{{ data?.name }}</td>
+            <td>{{ data?.class }}</td>
+            <td>{{ data?.section }}</td>
+            <td>{{ data?.sub1 }}</td>
+            <td>{{ data?.sub2 }}</td>
+            <td>{{ data?.sub3 }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

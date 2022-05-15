@@ -1,0 +1,70 @@
+<div class="content">
+  <div class="card mb-3">
+    <div class="card-header">Countdown Timer - Input/Output decorators</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-6">
+          <app-display-timer
+            [countdownInput]="countdownInput"
+            [isPaused]="isPaused"
+            (timerValue)="handleTimer($event)"
+            [isStarted]="isStarted"
+          ></app-display-timer>
+        </div>
+        <div class="col-6">
+          <div class="card">
+            <div class="card-body">
+              <mat-form-field
+                class="example-full-width col-12"
+                appearance="fill"
+              >
+                <mat-label>Enter Timer Limit</mat-label>
+                <input
+                  matInput
+                  placeholder="Ex. 2000"
+                  name="timerLimit"
+                  #timerLimit="ngModel"
+                  [(ngModel)]="timerInput"
+                  (change)="handleInput($event)"
+                  required
+                />
+              </mat-form-field>
+              <div class="row">
+                <div class="col-12">
+                  <button
+                    class="btn btn-primary"
+                    (click)="startTimer()"
+                    [disabled]="!timerInput || isStarted"
+                  >
+                    Start/Restart
+                  </button>
+                  <button
+                    class="btn btn-primary reset-btn"
+                    (click)="pauseTimer()"
+                    [disabled]="isPaused"
+                  >
+                    Pause
+                  </button>
+                  <button class="btn btn-secondary reset-btn" (click)="resetTimer()">Reset</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 mt-2" *ngFor="let item of actionValue">
+                  Paused at: {{ item }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <app-log-action-time [startedTime]="startedTime" [pausedTime]="pausedTime"></app-log-action-time>
+        </div>
+        <div class="col-6">
+          <app-action-count [startCount]="startCount" [pauseCount]="pauseCount"></app-action-count>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
